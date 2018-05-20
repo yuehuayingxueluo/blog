@@ -25,4 +25,4 @@ char* CheckIP(char ip[]) //定义CheckIP（）函数，用于获取本机IP地�
     }
 	return ip;
 }
-```c
+```
