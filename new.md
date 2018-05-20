@@ -35,4 +35,20 @@ if (inum < 1 || inum > i)
 
 //Jump to the selected adapter 找到用户选择的网卡，最后由d指向选择的网卡
 for (d = alldevs, i = 0; i < inum - 1; d = d->next, i++);
+// 获得网络地址和掩码地址
+pcap_lookupnet(d->name, &net_ip, &net_mask, errbuf);
+
+
+if ((fp = pcap_open_live(d->name,
+	65536,
+	1,
+	1000,
+	errbuf
+)) == NULL)
+{
+	fprintf(stderr,
+		"\nUnable to open the adapter. %s is not supported by WinPcap\n",
+		d->name);
+	return -4;
+}
 ```
